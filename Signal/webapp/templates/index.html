@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TIMA • SIGNAL BOT</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header>
+            <div class="header-top">
+                <div class="user-info">
+                    <div class="user-id" id="userId">ID: 7212860533</div>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        Online
+                    </div>
+                </div>
+                <div class="header-badges">
+                    <span class="badge-device">WINDOWS MOBILE</span>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="lang-info">
+                    <span>🇺🇿</span>
+                    <span>UZ O'zbek</span>
+                </div>
+                <a href="#" class="support-btn" id="supportBtn">Chat podderjki</a>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="games-grid">
+                <!-- Mines -->
+                <div class="game-card">
+                    <div class="game-image img-mines">
+                        <span>💣</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Mines</div>
+                        <button class="open-btn">OCHISH</button>
+                    </div>
+                </div>
+
+                <!-- Penalty Shootout -->
+                <div class="game-card">
+                    <div class="game-image img-penalty">
+                        <span>⚽</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Penalty Shootout</div>
+                        <button class="open-btn">OCHISH</button>
+                    </div>
+                </div>
+
+                <!-- King Thimbles -->
+                <div class="game-card has-both">
+                    <span class="card-badge badge-hot">HOT</span>
+                    <span class="card-badge badge-new">NEW</span>
+                    <div class="game-image img-thimbles">
+                        <span>👑</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">King Thimbles</div>
+                        <button class="open-btn">OCHISH</button>
+                    </div>
+                </div>
+
+                <!-- Mi Mines -->
+                <div class="game-card">
+                    <div class="game-image img-mimines">
+                        <span>💎</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Mi Mines</div>
+                        <button class="open-btn">OCHISH</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Window (Signallar oynasi) -->
+    <div id="signalModal" class="modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle">O'yin</h3>
+                <button id="closeModal" class="close-modal">&times;</button>
+            </div>
+            <div id="modalContent" class="modal-content">
+                <!-- Signal ma'lumotlari JS orqali qo'shiladi -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

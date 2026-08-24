@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMA • SIGNAL BOT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Reklama oynasi -->
+        <div id="ad-overlay">
+            <div class="ad-content">
+                <h1>Reklama</h1>
+                <button id="ad-btn">REKLAMANI O'TKAZISH</button>
+            </div>
+        </div>
+
+        <!-- Asosiy Dashboard -->
+        <div id="dashboard" class="hidden">
+            <header class="profile-header">
+                <div class="user-info">
+                    <div class="avatar">T</div>
+                    <div class="user-details">
+                        <h2 id="username">Foydalanuvchi</h2>
+                        <p class="user-id">ID: <span id="userid">000000000</span></p>
+                        <p class="status">● Online</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="settings-btn">⚙️</button>
+                </div>
+            </header>
+
+            <div class="info-bar">
+                <span>💻 WINDOWS MOBILE</span>
+                <span id="lang-display" onclick="toggleLangModal()">🇺🇿 UZ O'zbek</span>
+            </div>
+            
+            <button class="support-btn">💬 Чат поддержки</button>
+
+            <main class="games-grid">
+                <!-- 1. Mines Classic -->
+                <div class="game-card mines-card" onclick="openSignalModal('Mines Classic')">
+                    <div class="card-badge">1WIN GAMES</div>
+                    <div class="card-image"><img src="images/mines.png" alt="Mines Classic"></div>
+                    <div class="card-title">MINES CLASSIC</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 2. Penalty Shootout -->
+                <div class="game-card" onclick="openSignalModal('Penalty')">
+                    <div class="tag-container"><span class="tag hot">HOT</span></div>
+                    <div class="card-image"><img src="https://i.postimg.cc/26m4zC8h/penalty.png" alt="Penalty Shootout"></div>
+                    <div class="card-title">Penalty Shootout</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 3. King Thimbles -->
+                <div class="game-card" onclick="openSignalModal('King Thimbles')">
+                    <div class="tag-container">
+                        <span class="tag hot">HOT</span>
+                        <span class="tag new">NEW</span>
+                    </div>
+                    <div class="card-image"><img src="https://i.postimg.cc/2yT95Dvy/thimbles.png" alt="King Thimbles"></div>
+                    <div class="card-title">King Thimbles</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 4. Mi Mines -->
+                <div class="game-card" onclick="openSignalModal('Mi Mines')">
+                    <div class="tag-container"><span class="tag hot">HOT</span></div>
+                    <div class="card-image"><img src="https://i.postimg.cc/q733vSvx/mi-mines.png" alt="Mi Mines"></div>
+                    <div class="card-title">Mi Mines</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 5. Football X -->
+                <div class="game-card" onclick="openSignalModal('Football X')">
+                    <div class="card-image"><img src="https://i.postimg.cc/d089KqB1/football-x.png" alt="Football X"></div>
+                    <div class="card-title">Football X</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 6. Mines (New) -->
+                <div class="game-card" onclick="openSignalModal('Mines (New)')">
+                    <div class="card-image"><img src="https://i.postimg.cc/Xv8XJ1Qk/mines-new.png" alt="Mines (New)"></div>
+                    <div class="card-title">Mines (New)</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 7. Mine Island -->
+                <div class="game-card" onclick="openSignalModal('Mine Island')">
+                    <div class="card-image"><img src="https://i.postimg.cc/50R4S2Xk/mine-island.png" alt="Mine Island"></div>
+                    <div class="card-title">Mine Island</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 8. Chicky Run -->
+                <div class="game-card" onclick="openSignalModal('Chicky Run')">
+                    <div class="card-image"><img src="https://i.postimg.cc/J4B3L9QW/chicky-run.png" alt="Chicky Run"></div>
+                    <div class="card-title">Chicky Run</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 9. AviaMaster -->
+                <div class="game-card" onclick="openSignalModal('AviaMaster')">
+                    <div class="tag-container"><span class="tag new">NEW</span></div>
+                    <div class="card-image"><img src="https://i.postimg.cc/q733vSvx/aviamaster.png" alt="AviaMaster"></div>
+                    <div class="card-title">AviaMaster</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 10. CoinFlip -->
+                <div class="game-card" onclick="openSignalModal('CoinFlip')">
+                    <div class="card-image"><img src="https://i.postimg.cc/q733vSvx/coinflip.png" alt="CoinFlip"></div>
+                    <div class="card-title">CoinFlip</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 11. Aviator -->
+                <div class="game-card" onclick="openSignalModal('Aviator')">
+                    <div class="card-image"><img src="https://i.postimg.cc/q733vSvx/aviator.png" alt="Aviator"></div>
+                    <div class="card-title">Aviator</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+
+                <!-- 12. Balloon -->
+                <div class="game-card" onclick="openSignalModal('Balloon')">
+                    <div class="card-image"><img src="https://i.postimg.cc/q733vSvx/balloon.png" alt="Balloon"></div>
+                    <div class="card-title">Balloon</div>
+                    <button class="open-btn">OCHISH</button>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Signal Modal -->
+        <div id="signal-modal" class="hidden">
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeSignalModal()">X</button>
+                <h2 id="modal-title">Mines Signal</h2>
+                <div id="mines-grid" class="mines-grid"></div>
+                <button id="generate-btn" onclick="generateSignal()">SIGNAL OLISH</button>
+                <p id="cooldown-timer"></p>
+            </div>
+        </div>
+
+        <!-- Language Modal -->
+        <div id="lang-modal" class="hidden">
+            <div class="modal-content">
+                <button class="close-lang" onclick="toggleLangModal()">X</button>
+                <h2>Tilni tanlang</h2>
+                <button onclick="setLang('uz')">O'zbek</button>
+                <button onclick="setLang('ru')">Русский</button>
+                <button onclick="setLang('en')">English</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
