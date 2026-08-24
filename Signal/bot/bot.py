@@ -19,25 +19,22 @@ dp = Dispatcher()
 # Render URL
 WEBAPP_URL = "https://signalbot-z9lk.onrender.com"
 
-@dp.message(Command("start"))
-async def start(message: types.Message):
-    markup = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(
-            text="🚀 TIMA • SIGNAL BOT'ni ochish", 
-            web_app=WebAppInfo(url=WEBAPP_URL)
-        )]
-    ])
-    await message.answer("Salom! Quyidagi tugma orqali botimizga kiring:", reply_markup=markup)
+# ...
 
 # Serve static files from 'webapp' directory
 async def handle_static(request):
-    path = request.match_info.get('tail', 'index.html')
-    # Path is relative to the root, but inside 'webapp' folder
-    # Since Root Directory on Render is set to 'Signal', webapp path is 'webapp/'
-    file_path = os.path.join("webapp", path)
+    path = request.match_info.get('tail', '')
+    if not path or path == '/':
+        path = 'index.html'
+    # Path is relative to the root (where bot.py is), 
+    # but based on the Render settings, we need to find the 'webapp' folder correctly.
+    # If the root is 'Signal', webapp is 'webapp/'. 
+    # Let's try an absolute path or relative path from the script location.
+    file_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "webapp", path)
+    
     if os.path.exists(file_path):
         return web.FileResponse(file_path)
-    return web.Response(text="File not found", status=404)
+    return web.Response(text=f"File not found: {file_path}", status=404)
 
 async def start_web_server():
     app = web.Application()
