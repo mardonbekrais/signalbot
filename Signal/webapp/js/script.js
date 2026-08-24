@@ -3,18 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Telegram.WebApp.ready();
     window.Telegram.WebApp.expand();
 
-    const adOverlay = document.getElementById('ad-overlay');
-    const dashboard = document.getElementById('dashboard');
-    const adBtn = document.getElementById('ad-btn');
     const signalModal = document.getElementById('signal-modal');
-    const langModal = document.getElementById('lang-modal');
     const minesGrid = document.getElementById('mines-grid');
     const cooldownTimer = document.getElementById('cooldown-timer');
+    const generateBtn = document.getElementById('generate-btn');
 
-    adBtn.addEventListener('click', () => {
-        adOverlay.classList.add('hidden');
-        dashboard.classList.remove('hidden');
-    });
+    let currentMines = 1;
 
     // Modals
     window.openSignalModal = (gameName) => {
@@ -23,9 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createMinesGrid();
     };
     window.closeSignalModal = () => signalModal.classList.add('hidden');
-    window.toggleLangModal = () => langModal.classList.toggle('hidden');
 
-    // Signal Logic
     function createMinesGrid() {
         minesGrid.innerHTML = '';
         for (let i = 0; i < 25; i++) {
@@ -35,37 +27,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    window.setMines = (count) => {
+        currentMines = count;
+        // Highlight active button (logic to be added if buttons exist)
+    };
+
     window.generateSignal = () => {
         const cells = document.querySelectorAll('.cell');
         cells.forEach(c => c.classList.remove('star'));
+        
         let count = 0;
+        let targets = [];
         while (count < 5) {
             const i = Math.floor(Math.random() * 25);
-            if (!cells[i].classList.contains('star')) {
-                cells[i].classList.add('star');
+            if (!targets.includes(i)) {
+                targets.push(i);
                 count++;
             }
         }
         
+        targets.forEach(i => {
+            setTimeout(() => {
+                cells[i].classList.add('star');
+            }, i * 50); // Animation delay
+        });
+        
         // Cooldown
         let timeLeft = 30;
-        const btn = document.getElementById('generate-btn');
-        btn.disabled = true;
+        generateBtn.disabled = true;
         const timer = setInterval(() => {
             timeLeft--;
             cooldownTimer.innerText = "Yangi signal: " + timeLeft + "s";
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                btn.disabled = false;
+                generateBtn.disabled = false;
                 cooldownTimer.innerText = "";
             }
         }, 1000);
-    };
-
-    // Language
-    window.setLang = (lang) => {
-        alert("Til o'zgartirildi: " + lang);
-        toggleLangModal();
     };
 
     // User Data
